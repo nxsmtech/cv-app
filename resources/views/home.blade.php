@@ -8,6 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h3>Yes</h3>
+    @foreach($cvs as $cv)
+        <p> {{ $cv->name }} </p>
+    @endforeach
 </body>
 </html>
