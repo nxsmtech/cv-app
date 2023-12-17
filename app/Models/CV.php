@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class CV extends Model
@@ -15,6 +16,11 @@ class CV extends Model
     use HasFactory;
 
     protected $table = 'cvs';
+
+    protected $fillable = [
+        'title',
+        'is_active',
+    ];
 
     /**
      * Create a new factory instance for the model.
@@ -44,8 +50,8 @@ class CV extends Model
         return $this->hasMany(Skill::class, 'cv_id', 'id');
     }
 
-    public function personalDetail(): HasMany
+    public function personalDetail(): HasOne
     {
-        return $this->hasMany(PersonalDetail::class, 'cv_id', 'id');
+        return $this->hasOne(PersonalDetail::class, 'cv_id', 'id');
     }
 }

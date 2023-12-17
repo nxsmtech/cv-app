@@ -18,6 +18,12 @@ use Inertia\Inertia;
 
 Route::get('/', [IndexController::class, 'index']);
 
-//Route::controller(CVController::class)->group(function () {
-//    Route::get('/cv/create', 'create')->name('cv.create');
-//});
+Route::controller(CVController::class)->group(function () {
+    Route::get('/cv/create', 'create')->name('cv.create');
+    Route::post('/cv/store', 'store')->name('cv.store');
+    Route::get('/cv/edit/{cv}', 'edit')->name('cv.edit');
+
+    Route::put('/cv/{cv}/update', 'update')->name('cv.update');
+    Route::post('/cv/{cv}/personal-detail/update', 'updatePersonalDetail')->name('cv.update.personal-details');
+//    Route::put('/cv/personal-details/{personal-detail}', '')
+});
