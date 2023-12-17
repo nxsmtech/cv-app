@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('cv_id');
             $table->string('institution');
-            //TODO transform to ID and take from Enum
-            $table->string('grade');
+            $table->integer('grade');
             $table->string('specialization');
             $table->date('start_date');
             $table->date('end_date')->nullable();

@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
             $table->integer('cv_id');
-            //TODO transform to integer and use ENUM
             $table->string('type');
             $table->string('name');
-            //TODO transform to integer and use ENUM
-            $table->string('level');
+            $table->integer('level');
             $table->timestamps();
         });
     }

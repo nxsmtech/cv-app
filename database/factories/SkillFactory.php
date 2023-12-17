@@ -2,9 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Enums\SkillLevels;
+use App\Enums\Skills;
 use App\Models\CV;
 use App\Models\Skill;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 /**
  * @extends Factory<Skill>
@@ -19,13 +22,14 @@ class SkillFactory extends Factory
     public function definition(): array
     {
         $faker = $this->faker;
+        $skillType = $faker->randomElement(Skills::asOptions());
+        $skillSet = Arr::get(Skills::skillSets(), $skillType);
+
         return [
             'cv_id' => CV::factory(),
-            //TODO change to random from array
-            'type' => 'Soft',
-            'name' => $faker->text(15),
-            //TODO change to random from array dependent on Type
-            'level' => 'Beginner',
+            'type' => $skillType,
+            'name' => $faker->randomElement($skillSet),
+            'level' => $faker->randomElement(array_keys(SkillLevels::asOptions())),
         ];
     }
 }
