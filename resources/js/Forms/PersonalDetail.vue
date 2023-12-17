@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="personalDetailForm.post('/cv/' + cv.id + '/personal-detail/update')" class="border-4 border-gray-200 rounded-lg p-4 w-1/2">
+    <form @submit.prevent="personalDetailForm.post('/cv/' + cvId + '/personal-detail/update')" class="border-4 border-gray-200 rounded-lg p-4 w-1/2">
         <!-- Form Fields -->
         <h2 class="text-2xl font-bold text-gray-900 mb-5">
             Personal details
@@ -59,16 +59,23 @@ import {useForm} from "@inertiajs/vue3";
 export default {
     name: 'PersonalDetail',
     props: {
-        cv: Object
+        cvId: {
+            type: Number,
+            required: true,
+        },
+        personalDetail: {
+            type: Object,
+            required: false,
+        }
     },
     setup(props) {
         const personalDetailForm = useForm({
-            id: props.cv.personal_detail?.id,
-            first_name: props.cv.personal_detail?.first_name,
-            last_name: props.cv.personal_detail?.last_name,
-            email: props.cv.personal_detail?.email,
-            phone: props.cv.personal_detail?.phone,
-            address: props.cv.personal_detail?.address,
+            id: props.personalDetail?.id,
+            first_name: props.personalDetail?.first_name,
+            last_name: props.personalDetail?.last_name,
+            email: props.personalDetail?.email,
+            phone: props.personalDetail?.phone,
+            address: props.personalDetail?.address,
         });
 
         return {

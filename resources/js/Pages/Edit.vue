@@ -6,7 +6,7 @@
             </h1>
 
             <Main :cv="this.cv"/>
-            <PersonalDetail :cv="this.cv"/>
+            <PersonalDetail :personal-detail="this.cv.personal_detail" :cv-id="this.cv.id"/>
         </div>
     </AppLayout>
 </template>

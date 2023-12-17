@@ -48,7 +48,7 @@ class CVController extends Controller
             'address' => 'required|string|max:255',
         ]);
 
-        $cv->personalDetail()->update($validated);
+        $cv->personalDetail()->updateOrCreate($validated);
 
         return redirect()->back();
     }
