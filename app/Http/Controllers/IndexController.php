@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\CV;
-use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class IndexController extends Controller
 {
-    public function index(): View
+    public function index(): Response
     {
         $cvs = CV::query()
             ->isActive()
             ->get();
 
-        return view('home', [
+        return Inertia::render('Index', [
             'cvs' => $cvs
         ]);
     }

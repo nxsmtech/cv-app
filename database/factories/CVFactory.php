@@ -28,8 +28,8 @@ class CVFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'CV ' . self::$index++,
-            'is_active' => $this->faker->boolean()
+            'title' => 'CV ' . self::$index++,
+            'is_active' => $this->faker->boolean(77)
         ];
     }
 }

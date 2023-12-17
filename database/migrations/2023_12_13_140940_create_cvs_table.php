@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cvs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
             $table->boolean('is_active');
             $table->timestamps();
         });

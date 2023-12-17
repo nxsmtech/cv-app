@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CVController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [IndexController::class, 'index']);
+
+//Route::controller(CVController::class)->group(function () {
+//    Route::get('/cv/create', 'create')->name('cv.create');
+//});
