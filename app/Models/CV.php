@@ -43,4 +43,9 @@ class CV extends Model
     {
         return $this->hasMany(Skill::class, 'cv_id', 'id');
     }
+
+    public function personalDetail(): HasMany
+    {
+        return $this->hasMany(PersonalDetail::class, 'cv_id', 'id');
+    }
 }

@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Enums\SkillLevels;
-use App\Enums\Skills;
+use App\Enums\Skill\Levels;
+use App\Enums\Skill\Skills;
 use App\Models\CV;
 use App\Models\Skill;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -29,7 +29,7 @@ class SkillFactory extends Factory
             'cv_id' => CV::factory(),
             'type' => $skillType,
             'name' => $faker->randomElement($skillSet),
-            'level' => $faker->randomElement(array_keys(SkillLevels::asOptions())),
+            'level' => $faker->randomElement(array_keys(Levels::asOptions())),
         ];
     }
 }

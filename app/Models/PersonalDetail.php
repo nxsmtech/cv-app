@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Database\Factories\SkillFactory;
+use Database\Factories\PersonalDetailFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Skill extends Model
+class PersonalDetail extends Model
 {
     use HasFactory;
 
@@ -17,7 +17,7 @@ class Skill extends Model
      */
     protected static function newFactory(): Factory
     {
-        return SkillFactory::new();
+        return PersonalDetailFactory::new();
     }
 
     public function cv(): BelongsTo

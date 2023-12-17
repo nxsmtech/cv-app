@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Enums;
+namespace App\Enums\Skill;
+
+use App\Enums\HasOptions;
 
 enum Skills: string implements HasOptions
 {

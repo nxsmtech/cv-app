@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Enums;
+namespace App\Enums\Education;
 
-enum EducationGrades: string implements HasOptions
+use App\Enums\HasOptions;
+
+enum Grades: string implements HasOptions
 {
     case ELEMENTARY = 'Elementary';
     case MIDDLE_SCHOOL = 'Middle School';

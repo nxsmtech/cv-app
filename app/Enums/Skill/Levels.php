@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Enums;
+namespace App\Enums\Skill;
 
-enum SkillLevels: string implements HasOptions
+use App\Enums\HasOptions;
+
+enum Levels: string implements HasOptions
 {
     case BEGINNER = 'Beginner';
     case INTERMEDIATE = 'Intermediate';
