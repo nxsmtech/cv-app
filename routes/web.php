@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CVController;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,4 +27,9 @@ Route::controller(CVController::class)->group(function () {
     Route::put('/cv/{cv}/update', 'update')->name('cv.update');
     Route::post('/cv/{cv}/personal-detail/update', 'updatePersonalDetail')->name('cv.update.personal-details');
 //    Route::put('/cv/personal-details/{personal-detail}', '')
+});
+
+Route::controller(EducationController::class)->group(function () {
+   Route::post('/cv/{cv}/education/update', 'update');
+   Route::delete('/education/{education}/delete', 'delete');
 });

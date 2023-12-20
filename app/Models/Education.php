@@ -14,6 +14,16 @@ class Education extends Model
 
     protected $table = 'educations';
 
+    protected $fillable = [
+        'cv_id',
+        'institution',
+        'grade',
+        'status',
+        'specialization',
+        'start_date',
+        'end_date',
+    ];
+
     /**
      * Create a new factory instance for the model.
      */
