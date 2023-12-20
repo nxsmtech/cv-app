@@ -1,6 +1,6 @@
 <template>
     <div class="border-4 border-gray-200 rounded-lg p-4 mb-4">
-        <form @submit.prevent="educationForm.post('/cv/' + cvId + '/education/update')">
+        <form>
             <div class="flex flex-col gap-3">
                 <div v-if="educationForm.recentlySuccessful"
                      class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" role="alert">
@@ -43,7 +43,7 @@
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                 </div>
                 <div class="flex justify-start gap-2">
-                    <button type="submit"
+                    <button type="submit" @click.prevent="updateEducation"
                             class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                         Update
                     </button>
@@ -58,8 +58,7 @@
 </template>
 
 <script>
-import {router, useForm} from "@inertiajs/vue3";
-import {reactive} from 'vue'
+import {useForm} from "@inertiajs/vue3";
 
 export default {
     name: 'EducationItem',
@@ -82,20 +81,30 @@ export default {
             status: props.education?.status,
         });
 
+        function updateEducation () {
+            educationForm.post('/cv/' + props.cvId + '/education/update', {
+                preserveState: false,
+                preserveScroll: true,
+            })
+        }
+
         function deleteEducation() {
             const educationId = educationForm.id
 
             if (educationId) {
-                router.delete('/education/' + educationId + '/delete')
+                educationForm.delete('/education/' + educationId + '/delete', {
+                    preserveScroll: true,
+                    onBefore: () => confirm('Are you sure you want to delete this education?'),
+                })
             }
 
             emit('delete-education', props.index)
         }
 
         return {
+            updateEducation,
             deleteEducation,
-            educationForm,
-            cvId: props.cvId
+            educationForm
         };
     }
 }

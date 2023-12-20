@@ -12,7 +12,7 @@
                 </div>
                 <div class="flex flex-col w-1/2">
                     <PersonalDetail :personal-detail="this.cv.personal_detail" :cv-id="this.cv.id"/>
-                    <WorkExperience :cv-id="this.cv.id" :work-experience="this.cv.work_experience"/>
+                    <WorkExperience :cv-id="this.cv.id" :experience="this.cv.work_experience"/>
                 </div>
             </div>
         </div>

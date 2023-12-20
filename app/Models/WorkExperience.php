@@ -12,6 +12,15 @@ class WorkExperience extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'cv_id',
+        'company_name',
+        'position',
+        'start_date',
+        'end_date',
+        'description'
+    ];
+
     /**
      * Create a new factory instance for the model.
      */

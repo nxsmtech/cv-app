@@ -20,7 +20,7 @@ export default {
     name: "WorkExperience",
     components: {WorkExperienceItem},
     props: {
-        workExperience: {
+        experience: {
             type: Array,
             required: true,
         },
@@ -30,7 +30,7 @@ export default {
         }
     },
     setup(props) {
-        const workExperience = props.workExperience
+        const workExperience = props.experience
 
         const addWorkExperience = () => {
             workExperience.push({});

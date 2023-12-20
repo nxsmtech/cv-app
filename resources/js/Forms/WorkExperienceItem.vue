@@ -1,6 +1,6 @@
 <template>
     <div class="border-4 border-gray-200 rounded-lg p-4 mb-4">
-        <form @submit.prevent="workExperienceForm.post('/cv/' + cvId + '/work-experience/update')">
+        <form>
             <div class="flex flex-col gap-3">
                 <div v-if="workExperienceForm.recentlySuccessful"
                      class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" role="alert">
@@ -36,14 +36,23 @@
                     <textarea type="text" v-model="workExperienceForm.description" :id="'description-' + index"
                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></textarea>
                 </div>
+                <div class="flex justify-start gap-2">
+                    <button type="submit" @click.prevent="updateWorkExperience"
+                            class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                        Update
+                    </button>
+                    <button @click.prevent="deleteWorkExperience"
+                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                        Delete
+                    </button>
+                </div>
             </div>
         </form>
     </div>
 </template>
 
 <script>
-import {router, useForm} from "@inertiajs/vue3";
-import {reactive} from 'vue'
+import {useForm } from "@inertiajs/vue3";
 
 export default {
     name: 'WorkExperienceItem',
@@ -56,6 +65,7 @@ export default {
         index: Number
     },
     setup(props, {emit}) {
+        console.log(props.workExperience)
         const workExperienceForm = useForm({
             id: props.workExperience?.id,
             company_name: props.workExperience?.company_name,
@@ -65,17 +75,28 @@ export default {
             description: props.workExperience?.description,
         });
 
+        function updateWorkExperience() {
+            workExperienceForm.post('/cv/' + props.cvId + '/work-experience/update', {
+                preserveState: false,
+                preserveScroll: true,
+            })
+        }
+
         function deleteWorkExperience() {
-            const workExperienceId = props.workExperience.id
+            const workExperienceId = workExperienceForm.id
 
             if (workExperienceId) {
-                // router.delete('/education/' + workExperienceId + '/delete')
+                workExperienceForm.delete('/work-experience/' + workExperienceId + '/delete', {
+                    preserveScroll: true,
+                    onBefore: () => confirm('Are you sure you want to delete this work experience?'),
+                })
             }
 
             emit('delete-work-experience', props.index)
         }
 
         return {
+            updateWorkExperience,
             deleteWorkExperience,
             workExperienceForm,
             cvId: props.cvId

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CVController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\WorkExperienceController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,6 +19,12 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [IndexController::class, 'index']);
+
+Route::group(['prefix' => 'cv/{cv}'], function(){
+    Route::post('/work-experience/update', [WorkExperienceController::class, 'update']);
+});
+
+Route::delete('/work-experience/{workExperience}/delete', [WorkExperienceController::class, 'delete']);
 
 Route::controller(CVController::class)->group(function () {
     Route::get('/cv/create', 'create')->name('cv.create');
