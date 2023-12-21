@@ -37,12 +37,14 @@ class CV extends Model
 
     public function education(): HasMany
     {
-        return $this->hasMany(Education::class, 'cv_id', 'id');
+        return $this->hasMany(Education::class, 'cv_id', 'id')
+            ->orderBy('created_at');
     }
 
     public function workExperience(): HasMany
     {
-        return $this->hasMany(WorkExperience::class, 'cv_id', 'id');
+        return $this->hasMany(WorkExperience::class, 'cv_id', 'id')
+            ->orderBy('created_at');
     }
 
     public function skill(): HasMany

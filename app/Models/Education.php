@@ -14,6 +14,7 @@ class Education extends Model
 
     protected $table = 'educations';
 
+
     protected $fillable = [
         'cv_id',
         'institution',

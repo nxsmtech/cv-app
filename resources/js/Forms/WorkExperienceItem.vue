@@ -7,30 +7,50 @@
                     Updated successfully.
                 </div>
                 <div>
+                    <div v-if="workExperienceForm.errors.company_name"
+                         class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                        {{ workExperienceForm.errors.company_name }}
+                    </div>
                     <label :for="'company_name-' + index"
                            class="block text-sm font-medium text-gray-700">Company Name</label>
                     <input type="text" v-model="workExperienceForm.company_name" :id="'company_name-' + index"
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                 </div>
                 <div>
+                    <div v-if="workExperienceForm.errors.position"
+                         class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                        {{ workExperienceForm.errors.position }}
+                    </div>
                     <label :for="'position-' + index"
                            class="block text-sm font-medium text-gray-700">Position name</label>
                     <input type="text" v-model="workExperienceForm.position" :id="'position-' + index"
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                 </div>
                 <div>
+                    <div v-if="workExperienceForm.errors.start_date"
+                         class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                        {{ workExperienceForm.errors.start_date }}
+                    </div>
                     <label :for="'start_date-' + index"
                            class="block text-sm font-medium text-gray-700">Start Date</label>
                     <input type="text" v-model="workExperienceForm.start_date" :id="'start_date-' + index"
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                 </div>
                 <div>
+                    <div v-if="workExperienceForm.errors.end_date"
+                         class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                        {{ workExperienceForm.errors.end_date }}
+                    </div>
                     <label :for="'end_date-' + index"
                            class="block text-sm font-medium text-gray-700">End Date</label>
                     <input type="text" v-model="workExperienceForm.end_date" :id="'end_date-' + index"
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                 </div>
                 <div>
+                    <div v-if="workExperienceForm.errors.description"
+                         class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+                        {{ workExperienceForm.errors.description }}
+                    </div>
                     <label :for="'description-' + index"
                            class="block text-sm font-medium text-gray-700">Description</label>
                     <textarea type="text" v-model="workExperienceForm.description" :id="'description-' + index"
@@ -65,7 +85,6 @@ export default {
         index: Number
     },
     setup(props, {emit}) {
-        console.log(props.workExperience)
         const workExperienceForm = useForm({
             id: props.workExperience?.id,
             company_name: props.workExperience?.company_name,
@@ -77,8 +96,8 @@ export default {
 
         function updateWorkExperience() {
             workExperienceForm.post('/cv/' + props.cvId + '/work-experience/update', {
-                preserveState: false,
                 preserveScroll: true,
+                onSuccess: (response) => workExperienceForm.id = response.props.cv.work_experience[props.index].id
             })
         }
 
