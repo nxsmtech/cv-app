@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CV;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -13,7 +14,7 @@ class CVController extends Controller
     public function create(): RedirectResponse
     {
         $cv = Cv::create([
-            'title' => 'New CV title'
+            'title' => Str::uuid()
         ]);
 
         return redirect()->route('cv.edit', $cv->id);
@@ -51,18 +52,5 @@ class CVController extends Controller
         $cv->personalDetail()->updateOrCreate($validated);
 
         return redirect()->back();
-    }
-
-    public function store(Request $request)
-    {
-        dd($request->all());
-        // Validate and store the data
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        // For demonstration, just redirect back with a success message
-        // In a real application, you would save this data to the database
-        return redirect()->back()->with('message', 'CV created successfully!');
     }
 }

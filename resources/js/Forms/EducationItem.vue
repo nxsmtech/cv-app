@@ -42,8 +42,13 @@
                 </div>
                 <label :for="'start_date-' + index"
                        class="block text-sm font-medium text-gray-700">Start date</label>
-                <input type="text" v-model="educationForm.start_date" :id="'start_date-' + index"
-                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <VueDatePicker
+                    v-model="educationForm.start_date"
+                    format="yyyy/MM/dd"
+                    :id="'start_date-' + index"
+                    :clearable="false"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                />
             </div>
             <div>
                 <div v-if="educationForm.errors.end_date"
@@ -52,8 +57,13 @@
                 </div>
                 <label :for="'end_date-' + index"
                        class="block text-sm font-medium text-gray-700">End date</label>
-                <input type="text" v-model="educationForm.end_date" :id="'end_date-' + index"
-                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <VueDatePicker
+                    v-model="educationForm.end_date"
+                    format="yyyy/MM/dd"
+                    :clearable="false"
+                    :id="'end_date-' + index"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                />
             </div>
             <div>
                 <div v-if="educationForm.errors.status"
@@ -81,10 +91,14 @@
 
 <script>
 import {useForm} from "@inertiajs/vue3";
-import { ref } from 'vue';
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 export default {
     name: 'EducationItem',
+    components: {
+        VueDatePicker
+    },
     props: {
         cvId: {
             type: Number,
@@ -94,7 +108,6 @@ export default {
         index: Number
     },
     setup(props, {emit}) {
-        const recentlySuccessful = ref(false);
         const educationForm = useForm({
             id: props.education?.id,
             institution: props.education?.institution,
@@ -126,7 +139,6 @@ export default {
         }
 
         return {
-            recentlySuccessful,
             updateEducation,
             deleteEducation,
             educationForm
