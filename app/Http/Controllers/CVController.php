@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Education\Grades;
+use App\Enums\Education\Statuses;
+use App\Enums\Skill\Levels;
+use App\Enums\Skill\Skills;
 use App\Models\CV;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,11 +27,11 @@ class CVController extends Controller
     public function edit(CV $cv): Response
     {
         return Inertia::render('Edit', [
-            'cv' => $cv->load(['education', 'skill', 'workExperience', 'personalDetail'])
+            'cv' => $cv->load(['education', 'skill', 'workExperience', 'personalDetail']),
         ]);
     }
 
-    public function update(CV $cv, Request $request)
+    public function update(CV $cv, Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',

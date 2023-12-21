@@ -4,7 +4,7 @@ namespace App\Enums\Education;
 
 use App\Enums\HasOptions;
 
-enum Status: string implements HasOptions
+enum Statuses: string implements HasOptions
 {
     case COMPLETE = 'Complete';
     case INCOMPLETE = 'Incomplete';

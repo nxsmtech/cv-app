@@ -22,8 +22,9 @@
                 </div>
                 <label :for="'grade-' + index"
                        class="block text-sm font-medium text-gray-700">Grade</label>
-                <input type="text" v-model="educationForm.grade" :id="'grade-' + index"
-                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <select :id="'grade-' + index" v-model="educationForm.grade" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    <option v-for="(grade, key) in grades" :key="key" :value="key">{{ grade }}</option>
+                </select>
             </div>
             <div>
                 <div v-if="educationForm.errors.specialization"
@@ -60,7 +61,6 @@
                 <VueDatePicker
                     v-model="educationForm.end_date"
                     format="yyyy/MM/dd"
-                    :clearable="false"
                     :id="'end_date-' + index"
                     class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
                 />
@@ -72,8 +72,9 @@
                 </div>
                 <label :for="'status-' + index"
                        class="block text-sm font-medium text-gray-700">Status</label>
-                <input type="text" v-model="educationForm.status" :id="'status-' + index"
-                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <select :id="'status-' + index" v-model="educationForm.status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    <option v-for="(status, key) in statuses" :key="key" :value="key">{{ status }}</option>
+                </select>
             </div>
             <div class="flex justify-start gap-2">
                 <button @click.prevent="updateEducation"
@@ -90,7 +91,8 @@
 </template>
 
 <script>
-import {useForm} from "@inertiajs/vue3";
+import {useForm, usePage} from "@inertiajs/vue3";
+import { computed } from 'vue'
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 
@@ -108,6 +110,9 @@ export default {
         index: Number
     },
     setup(props, {emit}) {
+        const page = usePage()
+        const statuses = computed(() => page.props.constants.statuses)
+        const grades = computed(() => page.props.constants.grades)
         const educationForm = useForm({
             id: props.education?.id,
             institution: props.education?.institution,
@@ -139,6 +144,8 @@ export default {
         }
 
         return {
+            statuses,
+            grades,
             updateEducation,
             deleteEducation,
             educationForm

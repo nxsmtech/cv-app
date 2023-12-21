@@ -2,6 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\Education\Grades;
+use App\Enums\Education\Statuses;
+use App\Enums\Skill\Levels;
+use App\Enums\Skill\Skills;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -37,7 +41,12 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+            'constants' => [
+                'grades' => Grades::asOptions(),
+                'statuses' => Statuses::asOptions(),
+                'skill_levels' => Levels::asOptions(),
+                'skills' => Skills::asOptions(),
+            ],
         ]);
     }
 }

@@ -33,8 +33,13 @@
                     </div>
                     <label :for="'start_date-' + index"
                            class="block text-sm font-medium text-gray-700">Start Date</label>
-                    <input type="text" v-model="workExperienceForm.start_date" :id="'start_date-' + index"
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    <VueDatePicker
+                        v-model="workExperienceForm.start_date"
+                        format="yyyy/MM/dd"
+                        :clearable="false"
+                        :id="'start_date-' + index"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                    />
                 </div>
                 <div>
                     <div v-if="workExperienceForm.errors.end_date"
@@ -43,8 +48,12 @@
                     </div>
                     <label :for="'end_date-' + index"
                            class="block text-sm font-medium text-gray-700">End Date</label>
-                    <input type="text" v-model="workExperienceForm.end_date" :id="'end_date-' + index"
-                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    <VueDatePicker
+                        v-model="workExperienceForm.end_date"
+                        format="yyyy/MM/dd"
+                        :id="'end_date-' + index"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+                    />
                 </div>
                 <div>
                     <div v-if="workExperienceForm.errors.description"
@@ -58,7 +67,7 @@
                 </div>
                 <div class="flex justify-start gap-2">
                     <button type="submit" @click.prevent="updateWorkExperience"
-                            class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            class="bg-blue-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                         Update
                     </button>
                     <button @click.prevent="deleteWorkExperience"
@@ -73,9 +82,14 @@
 
 <script>
 import {useForm } from "@inertiajs/vue3";
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 export default {
     name: 'WorkExperienceItem',
+    components: {
+        VueDatePicker,
+    },
     props: {
         cvId: {
             type: Number,

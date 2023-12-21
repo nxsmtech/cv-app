@@ -19,7 +19,7 @@ class EducationController extends Controller
             'status' => 'required|integer',
             'specialization' => 'required|string',
             'start_date' => 'required|date',
-            'end_date' => 'date',
+            'end_date' => 'nullable|date',
         ]);
 
         Education::updateOrCreate(

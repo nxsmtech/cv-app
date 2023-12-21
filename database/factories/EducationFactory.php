@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\Education\Grades;
-use App\Enums\Education\Status;
+use App\Enums\Education\Statuses;
 use App\Models\CV;
 use App\Models\Education;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -27,7 +27,7 @@ class EducationFactory extends Factory
             'cv_id' => CV::factory(),
             'institution' => $faker->city . ' ' . $faker->randomElement(['University', 'School', 'High School']),
             'grade' => $faker->randomElement(array_keys(Grades::asOptions())),
-            'status' => $faker->randomElement(array_keys(Status::asOptions())),
+            'status' => $faker->randomElement(array_keys(Statuses::asOptions())),
             'specialization' => $faker->jobTitle,
             'start_date' => $startDate,
             'end_date' => $faker->dateTimeBetween($startDate)->format('Y-m-d')
