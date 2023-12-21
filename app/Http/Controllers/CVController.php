@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\Education\Grades;
-use App\Enums\Education\Statuses;
-use App\Enums\Skill\Levels;
-use App\Enums\Skill\Skills;
 use App\Models\CV;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -43,18 +40,8 @@ class CVController extends Controller
         return redirect()->back();
     }
 
-    public function updatePersonalDetail(CV $cv, Request $request)
+    public function show(): View
     {
-        $validated = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-        ]);
-
-        $cv->personalDetail()->updateOrCreate($validated);
-
-        return redirect()->back();
+        return view('index');
     }
 }

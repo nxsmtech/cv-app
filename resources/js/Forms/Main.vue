@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="cvForm.put('/cv/' + cv.id + '/update')"
+    <form @submit.prevent="cvForm.post('/cv/' + cv.id + '/update')"
           class="border-4 border-gray-200 rounded-lg p-4">
         <h2 class="text-2xl font-bold text-gray-900 mb-5">
             Main
