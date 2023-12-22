@@ -41,6 +41,15 @@ class CVController extends Controller
         return redirect()->back();
     }
 
+    public function delete(CV $cv)
+    {
+        $cv->personalDetail()->delete();
+        $cv->education()->delete();
+        $cv->workExperience()->delete();
+        $cv->skill()->delete();
+        $cv->delete();
+    }
+
     public function show(CV $cv): HttpResponse
     {
         $cv->load(['education', 'skill', 'workExperience', 'personalDetail']);
