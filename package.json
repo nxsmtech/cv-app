@@ -16,6 +16,7 @@
     "dependencies": {
         "@inertiajs/vue3": "^1.0.14",
         "@vitejs/plugin-vue": "^4.5.2",
+        "@vueform/multiselect": "^2.6.6",
         "@vuepic/vue-datepicker": "^7.4.0"
     }
 }

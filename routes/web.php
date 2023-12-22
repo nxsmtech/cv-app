@@ -4,6 +4,7 @@ use App\Http\Controllers\CVController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PersonalDetailController;
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WorkExperienceController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ Route::group(['prefix' => 'cv/{cv}'], function(){
     Route::post('/update', [CVController::class, 'update']);
     Route::get('/show', [CVController::class, 'show']);
     Route::post('/education/update', [EducationController::class, 'update']);
+    Route::post('/skills/update', [SkillController::class, 'update']);
 });
 
 Route::delete('/work-experience/{workExperience}/delete', [WorkExperienceController::class, 'delete']);

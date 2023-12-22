@@ -12,6 +12,13 @@ class Skill extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'cv_id',
+        'type',
+        'name',
+        'level',
+    ];
+
     /**
      * Create a new factory instance for the model.
      */

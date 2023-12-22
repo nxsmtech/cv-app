@@ -5,10 +5,19 @@
                 Edit CV
             </h1>
 
+            <Link href="/">
+                <div class="my-4">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Return to list
+                    </button>
+                </div>
+            </Link>
+
             <div class="flex">
                 <div class="flex flex-col w-1/2">
                     <Main :cv="this.cv"/>
                     <Education :cv-id="this.cv.id" :education="this.cv.education"/>
+                    <Skills :cv-id="this.cv.id" :initial-skills="this.cv.skill"/>
                 </div>
                 <div class="flex flex-col w-1/2">
                     <PersonalDetail :personal-detail="this.cv.personal_detail" :cv-id="this.cv.id"/>
@@ -25,15 +34,19 @@ import Main from "../Forms/Main.vue";
 import PersonalDetail from "../Forms/PersonalDetail.vue";
 import Education from "../Forms/Education.vue";
 import WorkExperience from "../Forms/WorkExperience.vue";
+import Skills from "../Forms/Skills.vue";
+import {Link} from '@inertiajs/vue3'
 
 export default {
     name: 'Edit',
     components: {
+        Skills,
         WorkExperience,
         Education,
         PersonalDetail,
         Main,
-        AppLayout
+        AppLayout,
+        Link,
     },
     props: {
         cv: Object

@@ -10,6 +10,7 @@ enum Skills: string implements HasOptions
     case SOFT = 'Soft';
     case LEADERSHIP = 'Leadership';
     case LANGUAGE = 'Language';
+    case COMMON = 'Common';
 
     public static function asOptions(): array
     {
@@ -17,7 +18,7 @@ enum Skills: string implements HasOptions
             self::TECHNICAL->value => self::TECHNICAL->value,
             self::SOFT->value => self::SOFT->value,
             self::LEADERSHIP->value => self::LEADERSHIP->value,
-            self::LANGUAGE->value => self::LANGUAGE->value,
+            self::LANGUAGE->value => self::LANGUAGE->value
         ];
     }
 
@@ -31,7 +32,7 @@ enum Skills: string implements HasOptions
         ];
     }
 
-    private static function technical(): array
+    public static function technical(): array
     {
         return [
             'Programming',
@@ -42,7 +43,7 @@ enum Skills: string implements HasOptions
         ];
     }
 
-    private static function soft(): array
+    public static function soft(): array
     {
         return [
             'Communication',
@@ -53,7 +54,7 @@ enum Skills: string implements HasOptions
         ];
     }
 
-    private static function leadership(): array
+    public static function leadership(): array
     {
         return [
             'Project Management',
@@ -64,7 +65,7 @@ enum Skills: string implements HasOptions
         ];
     }
 
-    private static function language(): array
+    public static function language(): array
     {
         return [
             'English',

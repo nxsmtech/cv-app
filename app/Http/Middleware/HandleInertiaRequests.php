@@ -45,7 +45,13 @@ class HandleInertiaRequests extends Middleware
                 'grades' => Grades::asOptions(),
                 'statuses' => Statuses::asOptions(),
                 'skill_levels' => Levels::asOptions(),
-                'skills' => Skills::asOptions(),
+                'skills' => [
+                    Skills::TECHNICAL->value => Skills::technical(),
+                    Skills::SOFT->value => Skills::soft(),
+                    Skills::LEADERSHIP->value => Skills::leadership(),
+                    Skills::LANGUAGE->value => Skills::language(),
+
+                ],
             ],
         ]);
     }
