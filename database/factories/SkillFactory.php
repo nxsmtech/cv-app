@@ -27,6 +27,7 @@ class SkillFactory extends Factory
 
         return [
             'cv_id' => CV::factory(),
+            'type' => $skillType,
             'name' => $faker->randomElement($skillSet),
             'level' => $faker->randomElement(array_keys(Levels::asOptions())),
         ];
