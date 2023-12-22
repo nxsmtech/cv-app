@@ -14,9 +14,11 @@
                      class="flex items-center justify-between p-3 border-b border-gray-300">
                     <span class="text-lg font-medium text-gray-700">{{ cv.title }}</span>
                     <div>
-                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2">
-                            Open
-                        </button>
+                        <a :href="'/cv/' + cv.id + '/show'" target="_blank">
+                            <button  class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2">
+                                Open
+                            </button>
+                        </a>
                         <Link :href="'/cv/edit/' + cv.id">
                             <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded ml-2">
                                 Edit

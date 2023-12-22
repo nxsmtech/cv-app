@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\CV;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Http\Response as HttpResponse;
 
 class CVController extends Controller
 {
@@ -40,8 +41,12 @@ class CVController extends Controller
         return redirect()->back();
     }
 
-    public function show(): View
+    public function show(CV $cv): HttpResponse
     {
-        return view('index');
+        $cv->load(['education', 'skill', 'workExperience', 'personalDetail']);
+        $pdf = PDF::loadView('index', [
+            'cv' => $cv->toArray(),
+        ]);
+        return $pdf->stream();
     }
 }

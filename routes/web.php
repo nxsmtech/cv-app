@@ -24,6 +24,7 @@ Route::group(['prefix' => 'cv/{cv}'], function(){
     Route::post('/work-experience/update', [WorkExperienceController::class, 'update']);
     Route::post('/personal-detail/update', [PersonalDetailController::class, 'update']);
     Route::post('/update', [CVController::class, 'update']);
+    Route::get('/show', [CVController::class, 'show']);
     Route::post('/education/update', [EducationController::class, 'update']);
 });
 
@@ -34,5 +35,3 @@ Route::controller(CVController::class)->group(function () {
     Route::get('/cv/create', 'create');
     Route::get('/cv/edit/{cv}', 'edit');
 });
-
-Route::get('/rendered/cv', [CVController::class, 'show']);
