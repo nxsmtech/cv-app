@@ -2,23 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\WorkExperienceUpdateRequest;
 use App\Models\CV;
 use App\Models\WorkExperience;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 
 class WorkExperienceController extends Controller
 {
-    public function update(CV $cv, Request $request)
+    public function update(CV $cv, WorkExperienceUpdateRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'id' => 'nullable|integer',
-            'company_name' => 'required|string|max:255',
-            'position' => 'required|string|max:255',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date',
-            'description' => 'nullable|string'
-        ]);
+        $validated = $request->validated();
 
         WorkExperience::updateOrCreate(
             ['id' => Arr::get($validated, 'id')],

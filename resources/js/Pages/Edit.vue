@@ -5,13 +5,20 @@
                 Edit CV
             </h1>
 
-            <Link href="/">
-                <div class="my-4">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Return to list
+            <div class="flex gap-4">
+                <Link href="/">
+                    <div class="my-4">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Return to list
+                        </button>
+                    </div>
+                </Link>
+                <a :href="'/cv/' + cv.id + '/show'" target="_blank" class="my-4">
+                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2">
+                        Preview
                     </button>
-                </div>
-            </Link>
+                </a>
+            </div>
 
             <div class="flex">
                 <div class="flex flex-col w-1/2">

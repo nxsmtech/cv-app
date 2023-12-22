@@ -47,7 +47,8 @@
                         $endYear = \Illuminate\Support\Carbon::parse($workExperience['end_date'])->format('Y');
                     }
                 @endphp
-                <p class="mt-2"><strong>{{ Arr::get(\App\Enums\Education\Grades::asOptions(), $workExperience['position']) }}</strong>
+                <p class="mt-2">
+                    <strong> {{  $workExperience['position'] }}</strong>
                     - {{ $workExperience['company_name'] }}
                     {{ $startYear }}
                     - {{ $endYear ?? 'Still present' }}
@@ -62,7 +63,7 @@
             <h2 class="text-lg font-bold">Skills</h2>
             @foreach($cv['skill'] as $skill)
                 <p>
-                    {{ Arr::get($skill, 'name') }} - <strong>{{ Arr::get(\App\Enums\Skill\Levels::asOptions(), $skill['level']) }}</strong>
+                    {{ Arr::get($skill, 'name') }}
                 </p>
             @endforeach
         </div>

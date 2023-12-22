@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CvUpdateRequest;
 use App\Models\CV;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -29,13 +29,9 @@ class CVController extends Controller
         ]);
     }
 
-    public function update(CV $cv, Request $request): RedirectResponse
+    public function update(CV $cv, CvUpdateRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'is_active' => 'boolean',
-        ]);
-
+        $validated = $request->validated();
         $cv->update($validated);
 
         return redirect()->back();
@@ -53,7 +49,7 @@ class CVController extends Controller
     public function show(CV $cv): HttpResponse
     {
         $cv->load(['education', 'skill', 'workExperience', 'personalDetail']);
-        $pdf = PDF::loadView('index', [
+        $pdf = PDF::loadView('pdf', [
             'cv' => $cv->toArray(),
         ]);
         return $pdf->stream();

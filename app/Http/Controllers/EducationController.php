@@ -2,26 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EducationUpdateRequest;
 use App\Models\CV;
 use App\Models\Education;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 class EducationController extends Controller
 {
-    public function update(CV $cv, Request $request): RedirectResponse
+    public function update(CV $cv, EducationUpdateRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'id' => 'nullable|integer',
-            'institution' => 'required|string|max:255',
-            'grade' => 'required|integer',
-            'status' => 'required|integer',
-            'specialization' => 'required|string',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date',
-        ]);
-
+        $validated = $request->validated();
         Education::updateOrCreate(
             ['id' => Arr::get($validated, 'id')],
             [
